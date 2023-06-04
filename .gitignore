@@ -1,0 +1,11 @@
+install/
+build/
+log/
+
+# file-to-track.phpだけを追跡する。
+/*
+!/template*
+!/README.md
+!/*.sh
+!/.*
+!/example/

@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="example" exec="example_node" name="example" output="screen"/>
+</launch>
