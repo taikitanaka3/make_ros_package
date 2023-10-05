@@ -16,9 +16,19 @@
 #include <bits/stdc++.h>
 #include <gtest/gtest.h>
 
-TEST(test, nominal) {}
-
 int main(int argc, char *argv[]) {
+  rclcpp::init(argc, argv);
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
+}
+
+TEST(test, pubsub) {
+    auto node = std::make_shared<PackageName>();
+    rclcpp::WallRate loop_rate(10);
+    auto end_time = node->now() + rclcpp::Duration(10, 0);
+
+    while (node->now() < end_time) {
+        rclcpp::spin_some(node);
+        loop_rate.sleep();
+    }
 }
