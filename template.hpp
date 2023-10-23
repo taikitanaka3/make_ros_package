@@ -30,6 +30,8 @@ public:
 private:
   void timerCallback();
   void topicCallback(const String::SharedPtr msg) const;
+  rclcpp::Logger logger_;
+  rclcpp::Clock::SharedPtr clock_;
   rclcpp::TimerBase::SharedPtr timer_;
   rclcpp::Publisher<String>::SharedPtr publisher_;
   rclcpp::Subscription<String>::SharedPtr subscriber_;

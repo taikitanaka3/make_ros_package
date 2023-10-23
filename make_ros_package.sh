@@ -11,13 +11,13 @@ mkdir $package_name
 echo "Create files."
 
 # hpp file template
-template_hpp=$(sed "s/PackageName/$(tr '[:lower:]' '[:upper:]' <<<${package_name:0:1})${package_name:1}/g" template.hpp)
+template_hpp=$(sed -e "s/\package_name/$package_name/g" -e "s/PackageName/$(tr '[:lower:]' '[:upper:]' <<<${package_name:0:1})${package_name:1}/g" template.hpp)
 
 # cpp file template
 template_cpp=$(sed -e "s/\package_name/$package_name/g" -e "s/PackageName/$(tr '[:lower:]' '[:upper:]' <<<${package_name:0:1})${package_name:1}/g" template.cpp)
 
 # test file template
-template_test=$(sed "s/\package_name/$package_name/g" template_test.cpp)
+template_test=$(sed -e "s/\package_name/$package_name/g" -e "s/PackageName/$(tr '[:lower:]' '[:upper:]' <<<${package_name:0:1})${package_name:1}/g" template_test.cpp)
 
 # cmake file template
 template_cmake=$(sed "s/\package_name/$package_name/g" template.CMakeLists.txt)

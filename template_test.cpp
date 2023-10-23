@@ -16,9 +16,22 @@
 #include <bits/stdc++.h>
 #include <gtest/gtest.h>
 
-TEST(test, nominal) {}
+TEST(test, package_name_test) {
+    auto node = std::make_shared<PackageName>();
+    rclcpp::WallRate loop_rate(10);
+    auto end_time = node->now() + rclcpp::Duration(10, 0);
+    size_t i = 0;
+    while (node->now() < end_time) {
+        RCLCPP_WARN_THROTTLE(
+          node->getLogger(), *(node->get_clock()), 1000, " (i: %ld).", i+1);
+        rclcpp::spin_some(node);
+        loop_rate.sleep();
+        i++;
+    }
+}
 
 int main(int argc, char *argv[]) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
+

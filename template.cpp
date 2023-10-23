@@ -24,7 +24,9 @@
 using namespace std::chrono_literals;
 using std::placeholders::_1;
 
-PackageName::PackageName() : Node("package_name_node") {
+PackageName::PackageName() : Node("package_name_node"),
+  logger_(this->get_logger()),
+  clock_(this->get_clock()) {
   publisher_ = this->create_publisher<String>("topic", 10);
   subscriber_ = this->create_subscription<String>(
       "topic", 10, std::bind(&PackageName::topicCallback, this, _1));
