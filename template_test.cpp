@@ -23,7 +23,7 @@ TEST(test, package_name_test) {
     size_t i = 0;
     while (node->now() < end_time) {
         RCLCPP_WARN_THROTTLE(
-          node->getLogger(), *(node->get_clock()), 1000, " (i: %ld).", i+1);
+          node->get_logger(), *(node->get_clock()), 1000, " (i: %ld).", i+1);
         rclcpp::spin_some(node);
         loop_rate.sleep();
         i++;
